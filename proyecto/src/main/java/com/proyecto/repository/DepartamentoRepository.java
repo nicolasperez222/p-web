@@ -1,0 +1,8 @@
+package com.proyecto.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.proyecto.model.Departamento;
+
+public interface DepartamentoRepository extends JpaRepository<Departamento, Integer> {
+}

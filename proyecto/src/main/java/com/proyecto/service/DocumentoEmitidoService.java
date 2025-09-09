@@ -79,4 +79,37 @@ public class DocumentoEmitidoService {
         paqueteRepository.save(paquete);
         return "Documento consumido correctamente. Documentos restantes: " + paquete.getDocumentosRestante();
     }
+
+    public DocumentoEmitidoDTO guardarDocumentoEmitido(DocumentoEmitidoDTO dto) {
+        DocumentoEmitido documento = DocumentoEmitidoMapper.toModel(dto);
+        documento = documentoEmitidoRepository.save(documento);
+        return DocumentoEmitidoMapper.toDTO(documento);
+    }
+
+    public boolean eliminarDocumentoEmitido(Integer id) {
+        try {
+            if (documentoEmitidoRepository.existsById(id)) {
+                documentoEmitidoRepository.deleteById(id);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+     public DocumentoEmitidoDTO getDocumentoEmitido(Integer id) {
+        return documentoEmitidoRepository.findById(id)
+                .map(DocumentoEmitidoMapper::toDTO)
+                .orElse(null);
+    }
+
+ 
+    public List<DocumentoEmitidoDTO> getDocumentosEmitidos() {
+        return documentoEmitidoRepository.findAll()
+                .stream()
+                .map(DocumentoEmitidoMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }

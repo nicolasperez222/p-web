@@ -54,7 +54,7 @@ public class DocumentoEmitido implements Serializable {
     @Column(name = "json_peticion", columnDefinition = "LONGTEXT")
     private String jsonPeticion;
 
-    // Getters y setters
+
 
     public Integer getIdDocumento() {
         return idDocumento;

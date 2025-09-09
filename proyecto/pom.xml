@@ -8,11 +8,11 @@
 		<version>3.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>co.edu.javeriana</groupId>
-	<artifactId>ejemplojpa</artifactId>
+	<groupId>com.proyecto</groupId>
+	<artifactId>proyecto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ejemplojpa</name>
-	<description>Ejemplo JPA</description>
+	<name>proyecto</name>
+	<description>Proyecto Web</description>
 	<url/>
 	<licenses>
 		<license/>

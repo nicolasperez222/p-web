@@ -44,4 +44,40 @@ public class DocumentoEmitidoMapper {
         model.setJsonPeticion(dto.getJsonPeticion());
         return model;
     }
+
+   public static DocumentoEmitido toModel(DocumentoEmitidoDTO dto) {
+    if (dto == null) return null;
+    DocumentoEmitido model = new DocumentoEmitido();
+    model.setIdDocumento(dto.getIdDocumento());
+    model.setNumero(dto.getNumero());
+    model.setFecha(dto.getFecha());
+    model.setValorBruto(dto.getValorBruto());
+    model.setDescuentos(dto.getDescuentos());
+    model.setSubtotal(dto.getSubtotal());
+    model.setImpuestos(dto.getImpuestos());
+    model.setTotal(dto.getTotal());
+    model.setCufeCude(dto.getCufeCude());
+    model.setJsonPeticion(dto.getJsonPeticion());
+
+
+    if (dto.getTipoDocumentoId() != null) {
+        TipoDocumento tipoDocumento = new TipoDocumento();
+        tipoDocumento.setIdTipoDocumento(dto.getTipoDocumentoId());
+        model.setTipoDocumento(tipoDocumento);
+    }
+
+    if (dto.getResolucionId() != null) {
+        Resolucion resolucion = new Resolucion();
+        resolucion.setIdResolucion(dto.getResolucionId());
+        model.setResolucion(resolucion);
+    }
+
+    if (dto.getClienteId() != null) {
+        Cliente cliente = new Cliente();
+        cliente.setId(dto.getClienteId());
+        model.setCliente(cliente);
+    }
+
+    return model;
+}
 }

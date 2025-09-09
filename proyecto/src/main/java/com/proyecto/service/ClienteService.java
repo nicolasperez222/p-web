@@ -57,6 +57,15 @@ public class ClienteService {
         return false;
     }
 
+  
+    public boolean eliminarCliente(Integer id) {
+        Optional<Cliente> clienteOpt = clienteRepository.findById(id);
+        if (clienteOpt.isPresent()) {
+            clienteRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
    
     public String insertarOActualizarCliente(ClienteDTO clienteDTO) {
         Cliente existente = clienteRepository.findByNitAndDv(clienteDTO.getNit(), clienteDTO.getDv());

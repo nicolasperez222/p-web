@@ -63,7 +63,6 @@ public class Cliente implements Serializable {
     @Column(name = "logo")
     private String logo;
 
-    // Getters y setters
 
     public Integer getId() {
         return id;

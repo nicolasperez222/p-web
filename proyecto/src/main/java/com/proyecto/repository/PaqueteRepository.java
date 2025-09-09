@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.Optional;
 
 public interface PaqueteRepository extends JpaRepository<Paquete, Integer> {
+    Optional<Paquete> findFirstByClienteIdAndEstadoAndFechaFinAfterOrFechaFinIsNullOrderByIdPaqueteAsc(
+        Integer clienteId, Integer estado, Date fechaFin
+    );
     Optional<Paquete> findFirstByClienteIdAndEstadoAndDocumentosRestanteGreaterThanAndFechaFinAfterOrFechaFinIsNullOrderByIdPaqueteAsc(
         Integer clienteId, Integer estado, Integer documentosRestante, Date fechaFin
     );

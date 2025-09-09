@@ -35,17 +35,12 @@ public class DocumentoEmitidoService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    /**
-     * Obtiene todos los documentos emitidos de un cliente, ordenados por fecha descendente.
-     */
     public List<DocumentoEmitidoDTO> getDocumentosPorCliente(Integer idCliente) {
         List<DocumentoEmitido> docs = documentoEmitidoRepository.findByClienteIdOrderByFechaDesc(idCliente);
         return docs.stream().map(DocumentoEmitidoMapper::toDTO).collect(Collectors.toList());
     }
 
-    /**
-     * Obtiene documentos filtrados por cliente, prefijo y número.
-     */
+  
     public List<DocumentoEmitidoDTO> getDocumentosFiltrados(Integer idCliente, String prefijo, String numero) {
         List<DocumentoEmitido> docs = documentoEmitidoRepository.findByClienteIdAndNumeroAndResolucionPrefijoOrderByFechaDesc(
                 idCliente, numero, prefijo
@@ -53,9 +48,7 @@ public class DocumentoEmitidoService {
         return docs.stream().map(DocumentoEmitidoMapper::toDTO).collect(Collectors.toList());
     }
 
-    /**
-     * Guarda un nuevo documento emitido.
-     */
+   
     public DocumentoEmitidoDTO guardarDocumento(DocumentoEmitidoDTO dto) {
         DocumentoEmitido model = DocumentoEmitidoMapper.toModel(
                 dto,
@@ -67,9 +60,6 @@ public class DocumentoEmitidoService {
         return DocumentoEmitidoMapper.toDTO(saved);
     }
 
-    /**
-     * Consume un documento de un paquete activo del cliente.
-     */
     @Transactional
     public String consumirDocumento(Integer clienteId) {
         Optional<Paquete> paqueteOpt = paqueteRepository.findFirstByClienteIdAndEstadoAndDocumentosRestanteGreaterThanAndFechaFinAfterOrFechaFinIsNullOrderByIdPaqueteAsc(

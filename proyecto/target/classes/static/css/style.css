@@ -1,0 +1,96 @@
+:root {
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --bg: #f9fafb;
+    --card-bg: #ffffff;
+    --border: #e5e7eb;
+    --text: #1f2937;
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--bg);
+    margin: 0;
+    padding: 40px;
+    color: var(--text);
+}
+
+.container {
+    max-width: 100%;
+    margin: auto;
+    background: var(--card-bg);
+    backdrop-filter: blur(6px);
+    padding: 32px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--primary);
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 7px 6px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+thead {
+    background-color: var(--primary);
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f3f4f6;
+}
+
+tbody tr:hover {
+    background-color: #e0e7ff;
+    transition: background-color 0.2s ease;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
+}
+
+input, select {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: white;
+    color: var(--text);
+    transition: border-color 0.2s ease;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}

@@ -37,7 +37,7 @@ public class ResolucionService {
     }
 
 
-    public List<ResolucionDTO> getResolucionE(Integer clienteId, String numeroResolucion, Integer tipoDocumentoId) {
+    public List<ResolucionDTO> getResoluciones(Integer clienteId, String numeroResolucion, Integer tipoDocumentoId) {
         List<Resolucion> resoluciones = resolucionRepository.findByClienteIdAndNumeroResolucionAndTipoDocumentoId(
                 clienteId, numeroResolucion, tipoDocumentoId
         );
@@ -48,7 +48,25 @@ public class ResolucionService {
         return dtos;
     }
 
+    public List<ResolucionDTO> getResoluciones() {
+        List<Resolucion> resoluciones = resolucionRepository.findAll();
+        List<ResolucionDTO> dtos = new ArrayList<>();
+        for (Resolucion resolucion : resoluciones) {
+            dtos.add(ResolucionMapper.toDTO(resolucion));
+        }
+        return dtos;
+    }
+    
+    @Transactional
+    public ResolucionDTO guardarResolucion(ResolucionDTO dto) {
+        Cliente cliente = clienteRepository.findById(dto.getClienteId()).orElse(null);
+        TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(dto.getTipoDocumentoId()).orElse(null);
 
+        Resolucion resolucion = ResolucionMapper.toModel(dto, cliente, tipoDocumento);
+        resolucion = resolucionRepository.save(resolucion);
+
+        return ResolucionMapper.toDTO(resolucion);
+    }
     @Transactional
     public void guardarResoluciones(Integer clienteId, Integer tipoDocumentoId, List<ResolucionDTO> resoluciones) {
         Cliente cliente = clienteRepository.findById(clienteId).orElse(null);

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Clientes</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Gestión de Clientes</h1>
+
+    <form id="formCliente">
+        <h2>Crear o Editar Cliente</h2>
+
+        <div class="form-group">
+            <label for="representanteLegal">Representante Legal</label>
+            <input type="text" id="representanteLegal" name="representanteLegal" required>
+        </div>
+        <div class="form-group">
+            <label for="nit">NIT</label>
+            <input type="text" id="nit" name="nit" required>
+        </div>
+        <div class="form-group">
+            <label for="dv">DV</label>
+            <input type="text" id="dv" name="dv" required>
+        </div>
+        <div class="form-group">
+            <label for="razonSocial">Razón Social</label>
+            <input type="text" id="razonSocial" name="razonSocial" required>
+        </div>
+        <div class="form-group">
+            <label for="tipoEmpresa">Tipo Empresa</label>
+            <select id="tipoEmpresa" name="tipoEmpresa" ></select>
+        </div>
+        <div class="form-group">
+            <label for="responsabilidadTributaria">Responsabilidad Tributaria</label>
+            <input type="text" id="responsabilidadTributaria" name="responsabilidadTributaria">
+        </div>
+        <div class="form-group">
+            <label for="regimenIva">Régimen IVA</label>
+            <input type="text" id="regimenIva" name="regimenIva">
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" name="direccion">
+        </div>
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono" name="telefono">
+        </div>
+        <div class="form-group">
+            <label for="codigoCiiu">Código CIIU</label>
+            <input type="text" id="codigoCiiu" name="codigoCiiu">
+        </div>
+        <div class="form-group">
+            <label for="impuesto">Impuesto</label>
+            <input type="text" id="impuesto" name="impuesto">
+        </div>
+        <div class="form-group">
+            <label for="estado">Estado</label>
+            <select id="estado" name="estado">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="departamento">Departamento</label>
+            <select id="departamento" name="departamento"></select>
+        </div>
+        <div class="form-group">
+            <label for="municipio">Municipio</label>
+            <select id="municipio" name="municipio"></select>
+        </div>
+        <div class="form-group">
+            <label for="logo">Logo (Base64)</label>
+            <input type="file" id="logo" name="logo" accept="image/*">
+        </div>
+
+        <button type="submit">Guardar Cliente</button>
+    </form>
+
+    <hr>
+
+    <h2>Lista de Clientes</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NIT</th>
+            <th>Razón Social</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Municipio</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody id="clientesTableBody">
+        </tbody>
+    </table>
+</div>
+
+<script src="/js/clientes.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Certificados</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Gestión de Certificados</h1>
+
+    <form id="formCertificado" enctype="multipart/form-data">
+        <h2>Crear o Editar Certificado</h2>
+        <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <select id="cliente" name="cliente" required>
+                <option value="">Seleccione un cliente...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="certificado">Certificado (.p12)</label>
+            <input type="file" id="certificado" name="certificado" accept=".p12" required>
+        </div>
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" required>
+        </div>
+        <button type="submit">Guardar Certificado</button>
+    </form>
+
+    <hr>
+
+    <h2>Lista de Certificados</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Certificado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody id="certificadosTableBody">
+        </tbody>
+    </table>
+</div>
+
+<script src="/js/certificados.js"></script>
+</body>
+</html>

@@ -15,12 +15,6 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ClienteDTO> getCliente(@PathVariable Integer id) {
-        ClienteDTO cliente = clienteService.getCliente(id);
-        return cliente != null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
-    }
-
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> getClientes() {
         return ResponseEntity.ok(clienteService.getClientes());
@@ -28,7 +22,8 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<String> guardarCliente(@RequestBody ClienteDTO dto) {
-        return ResponseEntity.ok(clienteService.insertarOActualizarCliente(dto));
+        String resultado = clienteService.insertarOActualizarCliente(dto);
+        return ResponseEntity.ok(resultado);
     }
 
     @DeleteMapping("/{id}")

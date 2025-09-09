@@ -67,7 +67,10 @@ public class ClienteService {
         return false;
     }
    
-    public String insertarOActualizarCliente(ClienteDTO clienteDTO) {
+
+
+    
+    public String insertarOActualizarClienteA(ClienteDTO clienteDTO) {
         Cliente existente = clienteRepository.findByNitAndDv(clienteDTO.getNit(), clienteDTO.getDv());
         if (existente != null) {
     
@@ -95,6 +98,44 @@ public class ClienteService {
             clienteRepository.save(existente);
             return "Cliente actualizado exitosamente";
         } else {
+            Cliente nuevo = ClienteMapper.toModel(clienteDTO, null, null);
+            clienteRepository.save(nuevo);
+            return "Cliente insertado exitosamente";
+        }
+    }
+
+    public String insertarOActualizarCliente(ClienteDTO clienteDTO) {
+        Cliente existente = clienteRepository.findByNitAndDv(clienteDTO.getNit(), clienteDTO.getDv());
+        if (existente != null) {
+            // Actualizar cliente existente
+            existente.setRepresentanteLegal(clienteDTO.getRepresentanteLegal());
+            existente.setRazonSocial(clienteDTO.getRazonSocial());
+            existente.setTipoEmpresa(clienteDTO.getTipoEmpresa());
+            existente.setResponsabilidadTributaria(clienteDTO.getResponsabilidadTributaria());
+            existente.setRegimenIva(clienteDTO.getRegimenIva());
+            existente.setDireccion(clienteDTO.getDireccion());
+            existente.setEmail(clienteDTO.getEmail());
+            existente.setTelefono(clienteDTO.getTelefono());
+            existente.setCodigoCiiu(clienteDTO.getCodigoCiiu());
+            existente.setImpuesto(clienteDTO.getImpuesto());
+            existente.setEstado(clienteDTO.getEstado());
+    
+            // Buscar y asignar departamento y municipio
+            Departamento dep = departamentoRepository.findById(clienteDTO.getDepartamentoId())
+                    .orElseThrow(() -> new IllegalArgumentException("Departamento no encontrado"));
+            Municipio mun = municipioRepository.findById(clienteDTO.getMunicipioId())
+                    .orElseThrow(() -> new IllegalArgumentException("Municipio no encontrado"));
+    
+            existente.setDepartamento(dep);
+            existente.setMunicipio(mun);
+    
+            // Actualizar logo si está presente
+            existente.setLogo(clienteDTO.getLogo());
+    
+            clienteRepository.save(existente);
+            return "Cliente actualizado exitosamente";
+        } else {
+            // Insertar nuevo cliente
             Cliente nuevo = ClienteMapper.toModel(clienteDTO, null, null);
             clienteRepository.save(nuevo);
             return "Cliente insertado exitosamente";

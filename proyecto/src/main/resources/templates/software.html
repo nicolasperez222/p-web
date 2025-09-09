@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Software</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Gestión de Software</h1>
+
+    <form id="formSoftware">
+        <h2>Crear o Editar Software</h2>
+        <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <select id="cliente" name="cliente" required>
+                <option value="">Seleccione un cliente...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="id_software">ID Software</label>
+            <input type="text" id="id_software" name="id_software" required>
+        </div>
+        <div class="form-group">
+            <label for="pin">PIN</label>
+            <input type="text" id="pin" name="pin" required>
+        </div>
+        <button type="submit">Guardar Software</button>
+    </form>
+
+    <hr>
+
+    <h2>Lista de Software</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>ID Software</th>
+            <th>PIN</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody id="softwareTableBody">
+        </tbody>
+    </table>
+</div>
+
+<script src="/js/software.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Gestión de Recursos</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e0e7ff;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            background: #fff;
+            color: #2563eb;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .menu a:hover {
+            background: #2563eb;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido</h1>
+        <p>Selecciona una de las opciones para gestionar los recursos:</p>
+        <div class="menu">
+            <a href="/clientes">Gestión de Clientes</a>
+            <a href="/resoluciones">Gestión de Resoluciones</a>
+            <a href="/software">Gestión de Software</a>
+            <a href="/certificados">Gestión de Certificados</a>
+        </div>
+        <footer>
+            © 2025 - Sistema de Gestión de Recursos
+        </footer>
+    </div>
+</body>
+</html>

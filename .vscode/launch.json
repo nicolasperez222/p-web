@@ -9,6 +9,16 @@
             "projectName": "ejemplojpa",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectoApplication<ejemplojpa>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.proyecto.ProyectoApplication",
+            "projectName": "ejemplojpa",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

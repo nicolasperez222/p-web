@@ -2,11 +2,17 @@ package com.proyecto.init;
 
 import com.proyecto.model.Departamento;
 import com.proyecto.model.Municipio;
+import com.proyecto.model.TipoDocumento;
 import com.proyecto.repository.DepartamentoRepository;
 import com.proyecto.repository.MunicipioRepository;
+import com.proyecto.repository.TipoDocumentoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class DbInitializer implements CommandLineRunner {
@@ -16,11 +22,14 @@ public class DbInitializer implements CommandLineRunner {
 
     @Autowired
     private MunicipioRepository municipioRepository;
+    
+    @Autowired
+    private TipoDocumentoRepository tipoDocumentoRepository;
 
     @Override
     public void run(String... args) throws Exception {
 
-      
+       
         Departamento cundinamarca = new Departamento();
         cundinamarca.setNombre("Cundinamarca");
         departamentoRepository.save(cundinamarca);
@@ -40,7 +49,6 @@ public class DbInitializer implements CommandLineRunner {
         zipaquira.setCodigo("25899");
         municipioRepository.save(zipaquira);
 
- 
         Departamento antioquia = new Departamento();
         antioquia.setNombre("Antioquia");
         departamentoRepository.save(antioquia);
@@ -79,6 +87,28 @@ public class DbInitializer implements CommandLineRunner {
         buenaventura.setCodigo("76109");
         municipioRepository.save(buenaventura);
 
-        System.out.println("Datos iniciales insertados: 3 departamentos y municipios con código DIAN.");
+     
+        if (tipoDocumentoRepository.count() == 0) {
+            List<TipoDocumento> tipos = Arrays.asList(
+                    crear("Factura de Venta", "01"),
+                    crear("Factura de Exportación", "02"),
+                    crear("Factura de Contingencia", "03"),
+                    crear("Nota Crédito", "91"),
+                    crear("Nota Débito", "92"),
+                    crear("Documento Soporte", "96"),
+                    crear("Documento Soporte Adquisiciones", "98")
+            );
+            tipoDocumentoRepository.saveAll(tipos);
+            System.out.println("✅ Tipos de documento DIAN inicializados en la BD.");
+        }
+
+        System.out.println("✅ Datos iniciales insertados: departamentos, municipios y tipos de documento.");
+    }
+
+    private TipoDocumento crear(String nombre, String codigo) {
+        TipoDocumento td = new TipoDocumento();
+        td.setNombre(nombre);
+        td.setCodigo(codigo);
+        return td;
     }
 }

@@ -38,7 +38,7 @@ public class ResolucionService {
 
 
     public List<ResolucionDTO> getResoluciones(Integer clienteId, String numeroResolucion, Integer tipoDocumentoId) {
-        List<Resolucion> resoluciones = resolucionRepository.findByClienteIdAndNumeroResolucionAndTipoDocumentoId(
+        List<Resolucion> resoluciones = resolucionRepository.findByClienteIdAndNumeroResolucionAndTipoDocumento_IdTipoDocumento(
                 clienteId, numeroResolucion, tipoDocumentoId
         );
         List<ResolucionDTO> dtos = new ArrayList<>();

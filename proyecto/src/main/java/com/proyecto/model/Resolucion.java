@@ -48,7 +48,6 @@ public class Resolucion implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaHasta;
 
-    // Getters y setters
 
     public Integer getIdResolucion() {
         return idResolucion;

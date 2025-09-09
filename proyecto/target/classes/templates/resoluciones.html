@@ -8,32 +8,66 @@
 </head>
 <body>
 <div class="container">
+    <a href="/">Inicio</a>
     <h1>Gestión de Resoluciones</h1>
 
     <form id="formResolucion">
         <h2>Crear o Editar Resolución</h2>
+
         <div class="form-group">
             <label for="cliente">Cliente</label>
             <select id="cliente" name="cliente" required>
                 <option value="">Seleccione un cliente...</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label for="numero_resolucion">Número de Resolución</label>
-            <input type="text" id="numero_resolucion" name="numero_resolucion" required>
+            <label for="tipoDocumento">Tipo Documento</label>
+            <select id="tipoDocumento" name="tipoDocumento">
+                <option value="">Seleccione un tipo...</option>
+            </select>
         </div>
+
+        <div class="form-group">
+            <label for="numeroResolucion">Número Resolución</label>
+            <input type="text" id="numeroResolucion" name="numeroResolucion" required>
+        </div>
+
         <div class="form-group">
             <label for="prefijo">Prefijo</label>
             <input type="text" id="prefijo" name="prefijo">
         </div>
+
+        <div class="form-group">
+            <label for="fechaCreacion">Fecha Creación</label>
+            <input type="date" id="fechaCreacion" name="fechaCreacion" required>
+        </div>
+
+        <div class="form-group">
+            <label for="llaveTecnica">Llave Técnica</label>
+            <input type="text" id="llaveTecnica" name="llaveTecnica" required>
+        </div>
+
         <div class="form-group">
             <label for="desde">Desde</label>
             <input type="number" id="desde" name="desde" required>
         </div>
+
         <div class="form-group">
             <label for="hasta">Hasta</label>
             <input type="number" id="hasta" name="hasta" required>
         </div>
+
+        <div class="form-group">
+            <label for="fechaDesde">Fecha Desde</label>
+            <input type="date" id="fechaDesde" name="fechaDesde" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fechaHasta">Fecha Hasta</label>
+            <input type="date" id="fechaHasta" name="fechaHasta" required>
+        </div>
+
         <button type="submit">Guardar Resolución</button>
     </form>
 
@@ -42,11 +76,15 @@
     <table>
         <thead>
         <tr>
+            <th>ID</th>
             <th>Cliente</th>
-            <th>Número Resolución</th>
+            <th>Tipo Documento</th>
+            <th>Número</th>
             <th>Prefijo</th>
+            <th>Fecha Creación</th>
             <th>Desde</th>
             <th>Hasta</th>
+            <th>Vigencia</th>
             <th>Acciones</th>
         </tr>
         </thead>

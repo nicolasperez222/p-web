@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
     @GetMapping
-    public ResponseEntity<List<ClienteDTO>> getClientes() {
-        return ResponseEntity.ok(clienteService.getClientes());
+    public List<ClienteDTO> getClientes() {
+        return clienteService.getClientes();
     }
 
     @PostMapping

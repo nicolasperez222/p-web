@@ -18,7 +18,20 @@ public class ClienteDTO {
     private Integer departamentoId;
     private Integer municipioId;
     private String logo;
-    
+    private String departamentoNombre; 
+    private String municipioNombre;
+    public String getDepartamentoNombre() {
+        return departamentoNombre;
+    }
+    public void setDepartamentoNombre(String departamentoNombre) {
+        this.departamentoNombre = departamentoNombre;
+    }
+    public String getMunicipioNombre() {
+        return municipioNombre;
+    }
+    public void setMunicipioNombre(String municipioNombre) {
+        this.municipioNombre = municipioNombre;
+    }
     public Integer getId() {
         return id;
     }

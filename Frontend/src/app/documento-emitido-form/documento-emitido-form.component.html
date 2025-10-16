@@ -1,0 +1,76 @@
+<div class="card" style="padding:12px;">
+  <h3 *ngIf="documento.idDocumento; else nuevo">Editar Documento</h3>
+  <ng-template #nuevo><h3>Nuevo Documento</h3></ng-template>
+
+  <form (ngSubmit)="guardar($event)">
+    <div>
+      <label>Cliente *</label>
+      <select [(ngModel)]="documento.clienteId" name="clienteId" required>
+        <option [ngValue]="null">Seleccione...</option>
+        <option *ngFor="let c of clientes" [ngValue]="c.id">{{ c.razonSocial }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Tipo Documento *</label>
+      <select [(ngModel)]="documento.tipoDocumentoId" name="tipoDocumentoId" required>
+        <option [ngValue]="null">Seleccione...</option>
+        <option *ngFor="let t of tiposDoc" [ngValue]="t.idTipoDocumento">{{ t.nombre }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Resolución *</label>
+      <select [(ngModel)]="documento.resolucionId" name="resolucionId" required>
+        <option [ngValue]="null">Seleccione...</option>
+        <option *ngFor="let r of resoluciones" [ngValue]="r.idResolucion">{{ r.prefijo }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Número</label>
+      <input name="numero" [(ngModel)]="documento.numero" />
+    </div>
+
+    <div>
+      <label>Fecha *</label>
+      <input type="date" name="fecha" [(ngModel)]="documento.fecha" required />
+    </div>
+
+    <div>
+      <label>Valor Bruto *</label>
+      <input type="number" name="valorBruto" [(ngModel)]="documento.valorBruto" required />
+    </div>
+
+    <div>
+      <label>Descuentos</label>
+      <input type="number" name="descuentos" [(ngModel)]="documento.descuentos" />
+    </div>
+
+    <hr />
+    <div>
+      <label>Subtotal</label>
+      <input type="number" [value]="documento.subtotal" readonly />
+    </div>
+
+    <div>
+      <label>Impuestos</label>
+      <input type="number" [value]="documento.impuestos" readonly />
+    </div>
+
+    <div>
+      <label>Total</label>
+      <input type="number" [value]="documento.total" readonly />
+    </div>
+
+    <div>
+      <label>CUFE/CUDE</label>
+      <input [value]="documento.cufeCude" readonly />
+    </div>
+
+    <div style="margin-top:10px;">
+      <button type="submit">{{ documento.idDocumento ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

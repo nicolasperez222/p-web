@@ -105,9 +105,13 @@ public class ClienteService {
     }
 
     public String insertarOActualizarCliente(ClienteDTO clienteDTO) {
+        Departamento dep = departamentoRepository.findById(clienteDTO.getDepartamentoId())
+            .orElseThrow(() -> new IllegalArgumentException("Departamento no encontrado"));
+        Municipio mun = municipioRepository.findById(clienteDTO.getMunicipioId())
+                .orElseThrow(() -> new IllegalArgumentException("Municipio no encontrado"));
+
         Cliente existente = clienteRepository.findByNitAndDv(clienteDTO.getNit(), clienteDTO.getDv());
         if (existente != null) {
-            // Actualizar cliente existente
             existente.setRepresentanteLegal(clienteDTO.getRepresentanteLegal());
             existente.setRazonSocial(clienteDTO.getRazonSocial());
             existente.setTipoEmpresa(clienteDTO.getTipoEmpresa());
@@ -120,23 +124,16 @@ public class ClienteService {
             existente.setImpuesto(clienteDTO.getImpuesto());
             existente.setEstado(clienteDTO.getEstado());
     
-            // Buscar y asignar departamento y municipio
-            Departamento dep = departamentoRepository.findById(clienteDTO.getDepartamentoId())
-                    .orElseThrow(() -> new IllegalArgumentException("Departamento no encontrado"));
-            Municipio mun = municipioRepository.findById(clienteDTO.getMunicipioId())
-                    .orElseThrow(() -> new IllegalArgumentException("Municipio no encontrado"));
-    
             existente.setDepartamento(dep);
             existente.setMunicipio(mun);
     
-            // Actualizar logo si está presente
+    
             existente.setLogo(clienteDTO.getLogo());
     
             clienteRepository.save(existente);
             return "Cliente actualizado exitosamente";
         } else {
-            // Insertar nuevo cliente
-            Cliente nuevo = ClienteMapper.toModel(clienteDTO, null, null);
+           Cliente nuevo = ClienteMapper.toModel(clienteDTO, dep, mun);
             clienteRepository.save(nuevo);
             return "Cliente insertado exitosamente";
         }

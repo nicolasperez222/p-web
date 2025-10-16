@@ -1,0 +1,131 @@
+
+.page-container {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+.page-title {
+  font-size: 1.8rem;
+  color: #0078d7;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+.actions-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+
+.btn-primary {
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #005fa3;
+  transform: translateY(-1px);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Tabla */
+.table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow-x: auto;
+  padding: 16px;
+}
+
+.table-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.styled-table thead {
+  background-color: #f0f6fc;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.styled-table th {
+  color: #0078d7;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f9fbfd;
+}
+
+
+.styled-table td button {
+  margin-right: 6px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+
+.styled-table td button:first-child {
+  background-color: #0078d7;
+  color: #fff;
+}
+
+.styled-table td button:first-child:hover {
+  background-color: #005fa3;
+}
+
+.styled-table td button:last-child {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.styled-table td button:last-child:hover {
+  background-color: #b02a37;
+}
+
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 20px;
+  }
+
+  .styled-table th, .styled-table td {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .btn-primary {
+    padding: 8px 14px;
+  }
+}

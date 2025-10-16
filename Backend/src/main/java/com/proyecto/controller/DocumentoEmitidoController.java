@@ -38,4 +38,17 @@ public class DocumentoEmitidoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<List<DocumentoEmitidoDTO>> getDocumentosPorCliente(@PathVariable Integer clienteId) {
+        return ResponseEntity.ok(documentoEmitidoService.getDocumentosPorCliente(clienteId));
+    }
+
+    @GetMapping("/filtrar")
+    public ResponseEntity<List<DocumentoEmitidoDTO>> getDocumentosFiltrados(
+            @RequestParam Integer clienteId,
+            @RequestParam String prefijo,
+            @RequestParam String numero) {
+        return ResponseEntity.ok(documentoEmitidoService.getDocumentosFiltrados(clienteId, prefijo, numero));
+    }
 }

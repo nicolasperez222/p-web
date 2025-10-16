@@ -26,6 +26,9 @@ public class ClienteMapper {
         dto.setDepartamentoId(model.getDepartamento() != null ? model.getDepartamento().getId() : null);
         dto.setMunicipioId(model.getMunicipio() != null ? model.getMunicipio().getId() : null);
         dto.setLogo(model.getLogo());
+        dto.setDepartamentoNombre(model.getDepartamento() != null ? model.getDepartamento().getNombre() : null);
+        dto.setMunicipioNombre(model.getMunicipio() != null ? model.getMunicipio().getNombre() : null);
+
         return dto;
     }
 

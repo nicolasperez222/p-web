@@ -1,0 +1,52 @@
+<div class="page-container">
+  <h2 class="page-title">Gestión de Resoluciones</h2>
+
+  <div class="actions-bar">
+    <button class="btn-primary" (click)="nuevo()">Nueva Resolución</button>
+  </div>
+
+  <app-resolucion-form
+    *ngIf="mostrarFormulario"
+    [resolucionEditar]="resolucionSeleccionada"
+    (saved)="onSaved()"
+    (cancelled)="onCancel()">
+  </app-resolucion-form>
+
+  <div class="table-container" *ngIf="!mostrarFormulario">
+    <h3 class="table-title">Lista de Resoluciones</h3>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Tipo</th>
+          <th>Número</th>
+          <th>Prefijo</th>
+          <th>F. Creación</th>
+          <th>Desde</th>
+          <th>Hasta</th>
+          <th>Vigencia</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of resoluciones()">
+          <td>{{ r.idResolucion }}</td>
+          <td>{{ r.cliente?.razonSocial }}</td>
+          <td>{{ r.tipoDocumento?.nombre }}</td>
+          <td>{{ r.numeroResolucion }}</td>
+          <td>{{ r.prefijo }}</td>
+          <td>{{ r.fechaCreacion }}</td>
+          <td>{{ r.desde }}</td>
+          <td>{{ r.hasta }}</td>
+          <td>{{ r.fechaDesde }} - {{ r.fechaHasta }}</td>
+          <td>
+            <button (click)="editar(r)">Editar</button>
+            <button (click)="eliminar(r.idResolucion)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

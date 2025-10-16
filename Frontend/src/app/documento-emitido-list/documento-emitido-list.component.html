@@ -1,0 +1,48 @@
+<div class="page-container">
+  <h2 class="page-title">Documentos Emitidos</h2>
+
+  <div class="actions-bar">
+    <button class="btn-primary" (click)="nuevo()">Nuevo Documento</button>
+  </div>
+
+  <app-documento-emitido-form
+    *ngIf="mostrarFormulario"
+    [documentoEditar]="documentoSeleccionado"
+    (saved)="onSaved()"
+    (cancelled)="onCancel()">
+  </app-documento-emitido-form>
+
+  <div class="table-container">
+    <h3 class="table-title">Lista de Documentos</h3>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Tipo Doc</th>
+          <th>Resolución</th>
+          <th>Número</th>
+          <th>Fecha</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of documentos()">
+          <td>{{ d.idDocumento }}</td>
+          <td>{{ d.cliente?.razonSocial }}</td>
+          <td>{{ d.tipoDocumento?.nombre }}</td>
+          <td>{{ d.resolucion?.prefijo }}</td>
+          <td>{{ d.numero }}</td>
+          <td>{{ d.fecha | date }}</td>
+          <td>{{ d.total | currency:'COP':'symbol-narrow' }}</td>
+          <td>
+            <button (click)="editar(d)">Editar</button>
+            <button (click)="eliminar(d.idDocumento)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

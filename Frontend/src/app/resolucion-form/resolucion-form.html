@@ -1,0 +1,68 @@
+
+<div class="card" style="padding:12px; margin-bottom:12px;">
+  <h3 *ngIf="resolucion.idResolucion; else nuevo">Editar Resolución</h3>
+  <ng-template #nuevo><h3>Nueva Resolución</h3></ng-template>
+
+  <form (ngSubmit)="guardar($event)" #form="ngForm" novalidate>
+    <div>
+      <label>Cliente *</label>
+      <select [(ngModel)]="resolucion.cliente" name="cliente">
+        <option [ngValue]="null">Seleccione...</option>
+        <option *ngFor="let c of clientes" [ngValue]="c">{{ c.razonSocial }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Tipo Documento *</label>
+      <select [(ngModel)]="resolucion.tipoDocumento" name="tipoDocumento">
+        <option [ngValue]="null">Seleccione...</option>
+        <option *ngFor="let t of tiposDoc" [ngValue]="t">{{ t.nombre }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Número Resolución *</label>
+      <input name="numeroResolucion" [(ngModel)]="resolucion.numeroResolucion" />
+    </div>
+
+    <div>
+      <label>Prefijo</label>
+      <input name="prefijo" [(ngModel)]="resolucion.prefijo" />
+    </div>
+
+    <div>
+      <label>Fecha Creación *</label>
+      <input type="date" name="fechaCreacion" [(ngModel)]="resolucion.fechaCreacion" />
+    </div>
+
+    <div>
+      <label>Llave Técnica *</label>
+      <input name="llaveTecnica" [(ngModel)]="resolucion.llaveTecnica" />
+    </div>
+
+    <div>
+      <label>Desde *</label>
+      <input type="number" name="desde" [(ngModel)]="resolucion.desde" />
+    </div>
+
+    <div>
+      <label>Hasta *</label>
+      <input type="number" name="hasta" [(ngModel)]="resolucion.hasta" />
+    </div>
+
+    <div>
+      <label>Fecha Desde</label>
+      <input type="date" name="fechaDesde" [(ngModel)]="resolucion.fechaDesde" />
+    </div>
+
+    <div>
+      <label>Fecha Hasta</label>
+      <input type="date" name="fechaHasta" [(ngModel)]="resolucion.fechaHasta" />
+    </div>
+
+    <div style="margin-top:10px;">
+      <button type="submit">{{ resolucion.idResolucion ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -199,4 +199,9 @@ public class Cliente implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    public int getIdCliente() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getIdCliente'");
+    }
 }

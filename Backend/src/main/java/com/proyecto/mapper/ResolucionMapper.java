@@ -6,8 +6,10 @@ import com.proyecto.model.Cliente;
 import com.proyecto.model.TipoDocumento;
 
 public class ResolucionMapper {
+
     public static ResolucionDTO toDTO(Resolucion model) {
         if (model == null) return null;
+
         ResolucionDTO dto = new ResolucionDTO();
         dto.setIdResolucion(model.getIdResolucion());
         dto.setClienteId(model.getCliente() != null ? model.getCliente().getId() : null);
@@ -25,10 +27,18 @@ public class ResolucionMapper {
 
     public static Resolucion toModel(ResolucionDTO dto, Cliente cliente, TipoDocumento tipoDocumento) {
         if (dto == null) return null;
+
         Resolucion model = new Resolucion();
         model.setIdResolucion(dto.getIdResolucion());
-        model.setCliente(cliente);
-        model.setTipoDocumento(tipoDocumento);
+
+        if (cliente != null) {
+            model.setCliente(cliente);
+        }
+
+        if (tipoDocumento != null) {
+            model.setTipoDocumento(tipoDocumento);
+        }
+
         model.setPrefijo(dto.getPrefijo());
         model.setNumeroResolucion(dto.getNumeroResolucion());
         model.setFechaCreacion(dto.getFechaCreacion());
@@ -37,6 +47,7 @@ public class ResolucionMapper {
         model.setHasta(dto.getHasta());
         model.setFechaDesde(dto.getFechaDesde());
         model.setFechaHasta(dto.getFechaHasta());
+
         return model;
     }
 }

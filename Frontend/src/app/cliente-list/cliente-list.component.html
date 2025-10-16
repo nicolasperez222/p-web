@@ -1,0 +1,47 @@
+<div class="page-container">
+  <h2 class="page-title">Gestión de Clientes</h2>
+
+  <div class="actions-bar">
+    <button class="btn-primary" (click)="nuevoCliente()">Nuevo Cliente</button>
+  </div>
+
+  <app-cliente-form
+    *ngIf="mostrarFormulario"
+    [clienteEditar]="clienteSeleccionado"
+    (clienteGuardado)="onClienteGuardado()">
+  </app-cliente-form>
+
+  <div class="table-container">
+    <h3 class="table-title">Lista de Clientes</h3>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NIT</th>
+          <th>Razón Social</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Departamento</th>
+          <th>Municipio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clientes()">
+          <td>{{ c.id }}</td>
+          <td>{{ c.nit }}-{{ c.dv }}</td>
+          <td>{{ c.razonSocial }}</td>
+          <td>{{ c.email }}</td>
+          <td>{{ c.telefono }}</td>
+          <td>{{ c.departamentoNombre }}</td>
+          <td>{{ c.municipioNombre }}</td>
+          <td>
+            <button (click)="editarCliente(c)">Editar</button>
+            <button (click)="eliminarCliente(c.id!)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

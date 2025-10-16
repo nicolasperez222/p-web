@@ -57,16 +57,42 @@ public class ResolucionService {
         return dtos;
     }
     
-    @Transactional
+   @Transactional
     public ResolucionDTO guardarResolucion(ResolucionDTO dto) {
-        Cliente cliente = clienteRepository.findById(dto.getClienteId()).orElse(null);
-        TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(dto.getTipoDocumentoId()).orElse(null);
+        Cliente cliente = clienteRepository.findById(dto.getClienteId())
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
-        Resolucion resolucion = ResolucionMapper.toModel(dto, cliente, tipoDocumento);
+        TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(dto.getTipoDocumentoId())
+                .orElseThrow(() -> new RuntimeException("Tipo de documento no encontrado"));
+
+        Resolucion resolucion;
+
+        if (dto.getIdResolucion() != null) {
+            // 🟡 Es edición
+            resolucion = resolucionRepository.findById(dto.getIdResolucion())
+                    .orElseThrow(() -> new RuntimeException("Resolución no encontrada"));
+
+            // Actualizar campos
+            resolucion.setNumeroResolucion(dto.getNumeroResolucion());
+            resolucion.setPrefijo(dto.getPrefijo());
+            resolucion.setFechaCreacion(dto.getFechaCreacion());
+            resolucion.setLlaveTecnica(dto.getLlaveTecnica());
+            resolucion.setDesde(dto.getDesde());
+            resolucion.setHasta(dto.getHasta());
+            resolucion.setFechaDesde(dto.getFechaDesde());
+            resolucion.setFechaHasta(dto.getFechaHasta());
+            resolucion.setTipoDocumento(tipoDocumento);
+            resolucion.setCliente(cliente);
+
+        } else {
+            // 🟢 Es creación
+            resolucion = ResolucionMapper.toModel(dto, cliente, tipoDocumento);
+        }
+
         resolucion = resolucionRepository.save(resolucion);
-
         return ResolucionMapper.toDTO(resolucion);
     }
+
     @Transactional
     public void guardarResoluciones(Integer clienteId, Integer tipoDocumentoId, List<ResolucionDTO> resoluciones) {
         Cliente cliente = clienteRepository.findById(clienteId).orElse(null);

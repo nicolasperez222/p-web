@@ -2,6 +2,9 @@ package com.proyecto.dto;
 
 import java.util.Date;
 
+import com.proyecto.model.Cliente;
+import com.proyecto.model.TipoDocumento;
+
 public class ResolucionDTO {
     private Integer idResolucion;
     private Integer clienteId;
@@ -14,6 +17,10 @@ public class ResolucionDTO {
     private Integer hasta;
     private Date fechaDesde;
     private Date fechaHasta;
+    private Cliente cliente; 
+    private TipoDocumento tipoDocumento; 
+
+
     public Integer getIdResolucion() {
         return idResolucion;
     }

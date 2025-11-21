@@ -1,9 +1,11 @@
 package com.proyecto.controller;
 
 import com.proyecto.dto.TipoDocumentoDTO;
+import com.proyecto.model.Role;
 import com.proyecto.service.TipoDocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +19,14 @@ public class TipoDocumentoController {
 
    
     @GetMapping
+    @Secured({ Role.Code.ADMIN, Role.Code.USER })
     public ResponseEntity<List<TipoDocumentoDTO>> getTiposDocumento() {
         return ResponseEntity.ok(tipoDocumentoService.getTiposDocumento());
     }
 
 
     @GetMapping("/{id}")
+    @Secured({ Role.Code.ADMIN, Role.Code.USER })
     public ResponseEntity<TipoDocumentoDTO> getTipoDocumento(@PathVariable Integer id) {
         TipoDocumentoDTO dto = tipoDocumentoService.getTipoDocumento(id);
         if (dto == null) {
@@ -33,12 +37,14 @@ public class TipoDocumentoController {
 
 
     @PostMapping
+    @Secured({ Role.Code.ADMIN, Role.Code.USER })
     public ResponseEntity<TipoDocumentoDTO> guardarTipoDocumento(@RequestBody TipoDocumentoDTO dto) {
         return ResponseEntity.ok(tipoDocumentoService.guardarTipoDocumento(dto));
     }
 
 
     @DeleteMapping("/{id}")
+    @Secured({ Role.Code.ADMIN})
     public ResponseEntity<Void> eliminarTipoDocumento(@PathVariable Integer id) {
         boolean eliminado = tipoDocumentoService.eliminarTipoDocumento(id);
         if (eliminado) {

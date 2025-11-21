@@ -2,7 +2,6 @@ package com.proyecto.mapper;
 
 import com.proyecto.dto.PaqueteTipoDocumentoDTO;
 import com.proyecto.model.PaqueteTipoDocumento;
-
 public class PaqueteTipoDocumentoMapper {
     public static PaqueteTipoDocumentoDTO toDTO(PaqueteTipoDocumento model) {
         if (model == null) return null;

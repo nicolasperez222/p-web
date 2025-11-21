@@ -1,2 +1,7 @@
+<div class="logout-container">
+    @if (showLogoutButton()) {
+        <button class="logout-btn" (click)="logout()">Cerrar sesión</button>
+    }
+</div>
 
 <router-outlet></router-outlet>

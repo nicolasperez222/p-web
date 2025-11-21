@@ -1,41 +1,46 @@
-package com.proyecto.controller;
+    package com.proyecto.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.http.ResponseEntity;
-import java.util.List;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.web.bind.annotation.RestController;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.DeleteMapping;
+    import org.springframework.web.bind.annotation.RequestBody;
+    import org.springframework.web.bind.annotation.PathVariable;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.security.access.annotation.Secured;
 
-import com.proyecto.service.ResolucionService;
-import com.proyecto.dto.ResolucionDTO;
+    import java.util.List;
 
-@RestController
-@RequestMapping("/api/resoluciones")
-public class ResolucionController {
+    import com.proyecto.service.ResolucionService;
+    import com.proyecto.dto.ResolucionDTO;
+    import com.proyecto.model.Role;
+    @RestController
+    @RequestMapping("/api/resoluciones")
+    public class ResolucionController {
 
-    @Autowired
-    private ResolucionService resolucionService;
+        @Autowired
+        private ResolucionService resolucionService;
 
-    @GetMapping
-    public ResponseEntity<List<ResolucionDTO>> getResoluciones() {
-        return ResponseEntity.ok(resolucionService.getResoluciones());
-    }
-
-    @PostMapping
-    public ResponseEntity<ResolucionDTO> guardarResolucion(@RequestBody ResolucionDTO dto) {
-        return ResponseEntity.ok(resolucionService.guardarResolucion(dto));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarResolucion(@PathVariable Integer id) {
-        if (resolucionService.eliminarResolucion(id)) {
-            return ResponseEntity.noContent().build();
+        @GetMapping
+        @Secured({ Role.Code.ADMIN, Role.Code.USER })
+        public ResponseEntity<List<ResolucionDTO>> getResoluciones() {
+            return ResponseEntity.ok(resolucionService.getResoluciones());
         }
-        return ResponseEntity.notFound().build();
+
+        @PostMapping
+        @Secured({ Role.Code.ADMIN })
+        public ResponseEntity<ResolucionDTO> guardarResolucion(@RequestBody ResolucionDTO dto) {
+            return ResponseEntity.ok(resolucionService.guardarResolucion(dto));
+        }
+
+        @DeleteMapping("/{id}")
+        @Secured({ Role.Code.ADMIN })
+        public ResponseEntity<Void> eliminarResolucion(@PathVariable Integer id) {
+            if (resolucionService.eliminarResolucion(id)) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.notFound().build();
+        }
     }
-}

@@ -200,8 +200,6 @@ public class Cliente implements Serializable {
         this.logo = logo;
     }
 
-    public int getIdCliente() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getIdCliente'");
-    }
+    
+  
 }

@@ -4,11 +4,13 @@ import com.proyecto.dto.ClienteDTO;
 import com.proyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-
+import com.proyecto.model.Role;
 import java.util.List;
 
 @RestController
+@Secured({ Role.Code.ADMIN})
 @RequestMapping("/api/clientes")
 public class ClienteController {
 

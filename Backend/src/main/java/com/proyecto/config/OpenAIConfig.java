@@ -12,9 +12,9 @@ public class OpenAIConfig {
   @Bean
   OpenAPI customOpenAPI() {
     return new OpenAPI()
-        .info(new Info().title("Example API")
+        .info(new Info().title("PROYECTO API")
             .version("1.0")
-            .description("An Example API"));
+            .description("PROYECTO API"));
   }
   
 }

@@ -6,16 +6,25 @@ import com.proyecto.model.TipoDocumento;
 import com.proyecto.repository.DepartamentoRepository;
 import com.proyecto.repository.MunicipioRepository;
 import com.proyecto.repository.TipoDocumentoRepository;
+import com.proyecto.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import com.proyecto.model.Role;
+import com.proyecto.model.User;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class DbInitializer implements CommandLineRunner {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private DepartamentoRepository departamentoRepository;
@@ -28,6 +37,10 @@ public class DbInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        userRepository.save(
+                new User("Alice", "Alisson", "alice@alice.com", passwordEncoder.encode("alice123"), Role.ADMIN));
+        userRepository.save(
+                new User("Bob", "Bobson", "bob@bob.com", passwordEncoder.encode("bob123"), Role.USER));
 
        
         Departamento cundinamarca = new Departamento();
@@ -99,10 +112,10 @@ public class DbInitializer implements CommandLineRunner {
                     crear("Documento Soporte Adquisiciones", "98")
             );
             tipoDocumentoRepository.saveAll(tipos);
-            System.out.println("✅ Tipos de documento DIAN inicializados en la BD.");
+            System.out.println("Tipos de documento DIAN inicializados en la BD.");
         }
 
-        System.out.println("✅ Datos iniciales insertados: departamentos, municipios y tipos de documento.");
+        System.out.println("Datos iniciales insertados: departamentos, municipios y tipos de documento.");
     }
 
     private TipoDocumento crear(String nombre, String codigo) {
